@@ -1,0 +1,147 @@
+
+;
+1
+void main()
+2
+{
+3
+  
+4
+  var areaOfCircle=calculateAreaOfCircle(3.5);
+5
+  print(areaOfCircle);
+6
+  calculateAreaOfCircle1(2.2);
+7
+}
+8
+​
+9
+double calculateAreaOfCircle(double radius){
+10
+  
+11
+  const PI=3.14;
+12
+  double area=PI*radius*radius;
+13
+  return area;
+14
+  
+15
+}
+16
+​
+17
+void calculateAreaOfCircle1(double radius){
+18
+  
+19
+  const PI=3.14;
+20
+  double area=PI*radius*radius;
+21
+  print(area);
+22
+  
+23
+}
+Console
+38.465
+15.197600000000003
+
+
+=======================
+void main()
+{
+  
+  var areaOfCircle=calculateAreaOfCircle(3.5);
+  print(areaOfCircle);
+  calculateAreaOfCircle1(2.2);
+  getData();
+  getAge();
+}
+
+double calculateAreaOfCircle(double radius){
+  
+  const PI=3.14;
+  double area=PI*radius*radius;
+  return area;
+  
+}
+
+void calculateAreaOfCircle1(double radius){
+  
+  const PI=3.14;
+  double area=PI*radius*radius;
+  print(area);
+  
+}
+
+void getData([int? a]){  
+  print(a);
+}
+void getAge([int? a]){  
+  a=a??34;
+  print(a);
+}
+
+void main()
+{
+  getData(d:899,b:2,a:1);
+  getData(d:67,b:2,a:1,c:34);
+}
+
+
+
+void getData({required int d,int? a,int? b,int c=9}){  
+  print('a value is $a');
+  print('a value is $b');
+  print('a value is $c');
+  print('a value is $d');
+}
+
+
+class Mobile {
+  String color;
+  String brandName;
+
+  String calling() {
+    return "Mobile can do calling";
+  }
+
+  String musicPlay() {
+    return "Mobile can play Music";
+  }
+}
+
+
+
+void add(int a, int b){
+	print(a+b);
+}
+
+var add=(int a,int b){
+	print(a+b);
+}
+
+var add=(a,b)=> print(a+b);
+
+m1(add);
+
+void m1(Function g){
+	int x=90;int y=88;
+	g(x,y);
+}
+
+
+
+
+
+
+
+
+
+
+
+
