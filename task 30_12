@@ -1,0 +1,16 @@
+when 5 object is created , one single output should be printed as 
+
+no of object is 5.
+
+
+When ever an object is created , print welcome
+
+
+Create 5 emp object and add to List and set. try doing update, delete
+
+Create 5 emp object add it to hashmap, making key as emp id and value as the emp object.
+
+create a class called Account, with 2 instance variables, create another class called Savings account
+as its sub class.
+
+	assign the value of base class variables thru sub class while creating object.
