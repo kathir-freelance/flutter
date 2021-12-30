@@ -1,0 +1,89 @@
+Constructor is a special method that is used to initialize an object when it is created.
+Constructor is called automatically when an object is instantiated; it is mainly used to set initial values for instance variables.
+The constructor has the same name as of class.
+Constructors do not have return type. 
+All classes have its own default constructor, if you don’t create any constructor for a class, the compiler will automatically creates a default constructor every class by assigning the default values to the member variables.
+But if you define your own constructor, the default constructor will be ignored.
+Named Constructor:
+	ClassName.constructor_name(param_list);
+
+
+void main() { 
+   
+   Employee emp1 = new Employee();
+   Employee emp2 = new Employee.namedConst('EMP001'); 
+} 
+class Employee{ 
+   Employee() { 
+      print(" Default Constructor Invoked"); 
+   } 
+   Employee.namedConst(String empCode) { 
+     print(" Named Constructor Invoked"); 
+      print(empCode); 
+   } 
+}
+
+This keyword:
+
+The this keyword represents an implicit object pointing to current class object.
+The this keyword is mainly used to eliminate the ambiguity between class attributes and parameters with the same name.
+Uses:
+It can be used to refer instance variable of current class
+It can be used to invoke or initiate current class constructor
+It can be passed as an argument in the method call
+It can be passed as argument in the constructor call
+It can be used to invoke current class method
+It can be used to return the current class instance
+
+static keyword:
+The static keyword is used for memory management of global data members.
+The static variables and methods are part of the class instead of a specific instance.
+There is no need to create a class object to access a static variable or call a static method; simply put the class name before the static variable or method name to use them.
+Static variables are also known as Class Variables.
+Static variables can be accessed directly in Static method
+Single copy of static variable is shared among all the instances of a class
+
+
+inheritance and overriding
+
+class Car {
+  void accelerate(){
+    print("simple acceleration");
+  }
+  
+  void brakes(){
+    print("simple brakes");
+  }
+}
+class Toyota extends Car {
+  @override
+  void brakes(){
+    print("toyota disk brakes");
+  }
+}
+void main(){
+  Toyota toyota = new Toyota();
+  toyota.accelerate();
+  toyota.brakes();
+}
+
+
+Declaring a method in sub class which is already exists in its parent class is known as method overriding. In Method Overriding, the subclass provide its own implementation for the method which already exists in superclass. Here, method defined in super class is known as overridden method and the method in subclass is called overriding method. 
+Rules for Method Overriding:
+1.) A method can only be written in Subclass, not in same class.
+2.) The argument list should be exactly the same as that of the overridden method.
+3.) The return type should be the same as declared in the original overridden method in the super class.
+4.) A method declared final or static cannot be overridden.
+5.) If a method cannot be inherited then it cannot be overridden.
+6.) Constructors cannot be overridden.
+
+Abstract classes:
+
+Any class that contains one or more abstract methods is known as abstract class.
+A class can be declared abstract using the “abstract” keyword followed by class declaration.
+A abstract class may or may not include abstract methods.
+It can also have concrete methods(methods with body).
+An abstract class can not be instantiated, which means cant create an object of it.
+Abstract classes can only be extended; and the subclass must provide implementations for all of the abstract methods in its parent class. 
+If a subclass does not implements abstract methods, then the subclass must also be declared abstract.
+
