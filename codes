@@ -137,6 +137,187 @@ void m1(Function g){
 
 
 
+class Vehicle {
+  String? make;
+  String? model;
+  
+  int vehicleAge=0;
+  String? color;
+
+  int get age {
+    return vehicleAge;
+  }
+
+   set age(int currentYear) {
+    vehicleAge = currentYear - 1;
+  }
+
+  // We can also eliminate the setter and just use a getter.
+  //int get age {
+  //  return DateTime.now().year - manufactureYear;
+  //}
+
+  Vehicle({this.make,this.model,this.color,});
+}
+
+void main() {
+ Vehicle car = 
+ Vehicle(make:"Honda",model:"Civic",color:"red");
+  print(car.make); // output - Honda
+  print(car.model); // output - Civic
+  car.age = 2019;
+  print(car.age); // output - 9
+
+}
+
+void main(){
+  
+  fun(1,a:899,c:4);
+}
+
+void fun(int b,{required int? c,int a=90}){
+  print('$a $b $c');
+}
+
+
+void main(){
+  
+  //var emp=new Employee();
+  var emp=Employee();//new is optional
+  
+}
+
+class Employee{
+  
+  Employee(){
+    print('object is created');
+  }
+}
+
+=======================
+void main(){
+  
+  //var emp=new Employee();
+//  var emp=Employee();//new is optional
+  Employee emp=Employee();//new is optional
+  print('${emp.eid} ${emp.name} ${emp.addr}');
+  Employee emp1=Employee();
+  emp1.addr='no.3 bglr';
+  print('${emp1.eid} ${emp1.name} ${emp1.addr}');
+  
+}
+
+class Employee{
+  
+  int? eid;//instance or non-static variable
+  String? name;
+  String? addr;
+  Employee(){
+    eid=1;
+    name='default';
+    addr="no4 chn";
+    print('object is created');
+  }
+}
+================================
+void main(){
+ // add();
+  //var emp=new Employee();
+//  var emp=Employee();//new is optional
+  Employee emp=Employee.details(123,'ajay');//new is optional
+  print('${emp.eid} ${emp.name} ${emp.addr}');
+  Employee emp1=Employee();
+  emp1.addr='no.3 bglr';
+  print('${emp1.eid} ${emp1.name} ${emp1.addr}');
+  Employee emp2=Employee.addrFillAllDetails(123,'ajay',"no. 7 mumbai");//new is optional
+  print('${emp2.eid} ${emp2.name} ${emp2.addr}');
+}
+
+class Employee{
+  
+  int? eid;//instance or non-static variable
+  String? name;
+  String? addr;
+  Employee(){}
+  Employee.details(int eid,String empName){
+    this.eid=eid;
+    name=empName;
+  }
+  Employee.addrFillAllDetails(int eid,String empName,String addr){
+    this.eid=eid;
+    name=empName;
+    this.addr=addr;
+  }
+}
+=============
+void main(){
+ // add();
+  //var emp=new Employee();
+//  var emp=Employee();//new is optional
+  
+  Employee emp1=Employee();
+  emp1.addr='no.3 bglr';
+  }
+
+class Employee{
+  
+  int? eid;//instance or non-static variable
+  String? name;
+  String? addr;
+  
+  
+}
+
+===================
+inheritance:
+
+class A{
+	void method1(){}
+}
+
+class B
+{
+
+}
+=============
+class Calc{
+	void add(){
+    print("method is called");
+  }
+}
+
+class ScitificCalc extends Calc
+{
+  void sin(){
+    print("sin of a numb 10");
+  }
+
+}
+
+void main(){
+  
+  ScitificCalc obj=ScitificCalc();
+  obj.add();
+  obj.sin();
+  
+  Calc c= Calc();
+  c.add();
+  //c.sin();
+  c.hashCode
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
