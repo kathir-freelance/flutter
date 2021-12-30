@@ -1,16 +1,14 @@
-when 5 object is created , one single output should be printed as 
-
-no of object is 5.
-
-
-When ever an object is created , print welcome
+1. when 5 object is created , one single output should be printed as 
+	"no of object is 5."
 
 
-Create 5 emp object and add to List and set. try doing update, delete
+2. When ever an object is created , print welcome
+3. Create 5 emp object and add to List and set. try doing update, delete
 
-Create 5 emp object add it to hashmap, making key as emp id and value as the emp object.
+4. Create 5 emp object add it to hashmap, making key as emp id and value as the emp object.
 
-create a class called Account, with 2 instance variables, create another class called Savings account
-as its sub class.
-
+5. create a class called Account, with 2 instance variables, create another class called Savings account as its sub class.
 	assign the value of base class variables thru sub class while creating object.
+6. given TV, Radio and DVDplayer, find apt base class and implement inheritance
+7. create a class Human  and its base class as Primates. find respective methods and implement inheritance
+8. create 3 constructors in a single class with 2 arg , 3 arg and 4 args. and invoke them and create objects for same class.
