@@ -1,0 +1,172 @@
+There is nothing to worry about “what is functional programming”. Forget and focus only on “How can I write 
+better code faster?”.
+Every package is a solution to reduce complexity. You accept a black-box that some other developer wrote for you and you just interact with a simpler API. The underlying principle that allows you to use external solutions is called composability.
+When do things start to break? When the application loses composability. Less composability means more code, more code means more bugs and complexity. More complexity means a nightmare for you as a developer. Let us see a simple example to the right.
+
+
+Imperative means telling step by step the machine what to do. It involves more variables, more code, more complexity. All of this for a simple sum.
+Functional means telling only what you care about, and let the machine doing its work
+
+A Function without a name.
+Also known as Lambdas or anonymous function.
+In Dart, Functions are referred as Objects.
+
+Syntax:
+()=>{expression} // short hand notation or FAT arrows notations
+Or 
+Anonymous function
+
+void add(int a, int b)
+{
+	var sum=a+b;
+	print(sum);
+}
+
+eqv in lambdas
+
+Function addNumb=(int a,int b){
+	var sum=a+b;
+	print(sum);
+}
+
+or
+if return is needed.
+
+var mul=(int numb){
+	return numb*5;
+}
+
+calling lambdas
+
+addNumb(10,3);
+var s=mul(10);
+print(s);
+
+
+another way to represent :  short hand syntax(FAT arrow)
+
+Function addNumb=(int a,int b)=>print(a+b);
+
+
+HOC:
+
+Can accept function as a parameter.
+Can return a function.
+Or both
+
+
+void main(){
+	Function add=(a,b)=>print(a+b);
+	m1("hi",add);
+	var t=task();
+	print(t(10));
+}
+//1. passing funct as arg to HOC
+void m1(String msg, Function f)
+{
+//HOC
+	print(msg);
+	f(1,2);
+
+}
+
+//2. return a function
+Function task(){
+	Function m2=(int n)=> n*4;
+	return m2;
+}
+
+Closures:
+
+https://dartforwebdevelopers.com/scoping-and-closures
+
+
+Streams:
+
+firstWhere():
+	
+	o find the first element that satisfies certain conditions.
+
+String element = iterable.firstWhere((element) => element.length > 5);
+
+const items = ['Salad', 'Popcorn', 'Toast', 'Lasagne'];
+
+  // You can find with a simple expression:
+  var foundItem1 = items.firstWhere((item) => item.length > 5);
+  print(foundItem1);
+
+ // You can also use an `orElse` function in case no value is found!
+  var foundItem4 = items.firstWhere(
+    (item) => item.length > 10,
+    orElse: () => 'None!',
+  );
+  print(foundItem4);
+}
+
+Passing function as reference (arg):
+
+bool predicate(String item) {
+  return item.length > 5;
+}
+var foundItem3 = items.firstWhere(predicate);
+print(foundItem3);
+
+ Using any() and every():
+
+The Iterable class provides two methods that you can use to verify conditions:
+any(): Returns true if at least one element satisfies the condition.
+every(): Returns true if all elements satisfy the condition.
+
+
+void main() {
+  const items = ['Salad', 'Popcorn', 'Toast'];
+
+  if (items.any((item) => item.contains('a'))) {
+    print('At least one item contains "a"');
+  }
+
+  if (items.every((item) => item.length >= 5)) {
+    print('All items have length >= 5');
+  }
+}
+
+Filtering:
+
+The previous sections cover methods like firstWhere() or singleWhere() that can help you find an element that satisfies a certain predicate.
+But what if you want to find all the elements that satisfy a certain condition? You can accomplish that using the where() method.
+var evenNumbers = numbers.where((number) => number.isEven);
+
+
+void main() {
+  var evenNumbers = const [1, -2, 3, 42].where((number) => number.isEven);
+
+  for (final number in evenNumbers) {
+    print('$number is even.');
+  }
+
+  if (evenNumbers.any((number) => number.isNegative)) {
+    print('evenNumbers contains negative numbers.');
+  }
+
+  // If no element satisfies the predicate, the output is empty.
+  var largeNumbers = evenNumbers.where((number) => number > 1000);
+  if (largeNumbers.isEmpty) {
+    print('largeNumbers is empty!');
+  }
+}
+
+Mapping:
+
+Mapping Iterables with the method map() enables you to apply a function over each of the elements, replacing each element with a new one.
+Iterable<int> output = numbers.map((number) => number * 10);
+In this example, each element of the Iterable numbers is multiplied by 10.
+You can also use map() to transform an element into a different object — for example, to convert all int to String, as you can see in the following example.
+
+void main() {
+  var numbersByTwo = const [1, -2, 3, 42].map((number) => number * 2);
+  print('Numbers: $numbersByTwo');
+}
+
+Refer this link for further methods:
+https://dart.dev/codelabs/iterables
+
