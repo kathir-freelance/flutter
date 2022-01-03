@@ -1,0 +1,39 @@
+void main() {
+  var obj1 = B();
+ // var obj2 = B();
+ // obj1.m1();
+  //obj2.bMethod();
+  //print(obj1.hashCode);
+  //print(obj2.hashCode);
+}
+
+class A {
+  int? id;
+  A(){
+    print('A constructor');
+  }
+  void aMethod() {
+    print('a method');
+  }
+
+  void m1() {
+    print('m1 method');
+  }
+}
+
+class B extends A {
+  int? n; 
+  B(){    
+     n=90;
+    print('b constructor');
+  }
+  void bMethod() {
+    print('b method');
+  }
+
+  @override
+  void m1() {
+    super.m1();
+    print('overridden method');
+  }
+}
