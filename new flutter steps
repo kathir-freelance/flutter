@@ -1,0 +1,53 @@
+1: import material.dart;
+2. have main method
+3. create a class and extend stateless widget
+4. use text widget, scaffold,center color etc as in prev notepad file
+5. can we add multiple Text for one widget eg:
+
+	2 Text widget in child of center or body:?
+
+yes its possible by using layout or control(invisible)
+
+	row , column etc
+6. add multiple Text or button using column
+7. add functions into button
+
+	like arrow, anonymous or normal function. on pressing print something in console
+if u connect same function to all on pressed went then logically it ll be wrong
+as they ll print same msg for choosing diff ans.
+so we use arrow or anonymous function.
+
+
+8.now that we can create a questionaire app
+
+in the abv code , add this below chngs
+
+var questions=['qn1?','qn2?']; add below fucntion build()
+
+
+this has to dynamically change on clicking answer 1 2 3 buttons in the place whre we gave
+Text('questions');
+
+
+so change it to Text(questions.elementAt(0)) //its hardcoded
+so make it dynamic
+
+create a variable index below class and increment it in answerQn method
+and u can see qn is not chnaging.. y?
+even the index goes beyond 1 no error like when we did manually chnaging value to 0,1,2...
+range error we got. but now we are not getting anything? y?
+
+this is where we make use of statefull widget.
+
+9. Stateful widget - state?
+
+state is data or info ur application use (refer desktop img 3);
+
+manage state by making use of stateful widget and state class. do the following chnages
+============================================================
+refer img4 for difference b/w stateless and statefull
+============================================================
+
+to avoid usage of myappstate use private (using _ symbol before class name and property and function of the class)
+
+
