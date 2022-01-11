@@ -95,7 +95,250 @@ fonts:
   #         weight: 700
 
 stateless widget and hot reload:
+=================================
+
+step 1:
+
+import 'package:flutter/material.dart';
+
+void main() {
+ runApp(new DogApp());
+}
+
+class DogApp extends StatelessWidget {
+ @override
+ Widget build(BuildContext context) {
+   return MaterialApp(
+     title: 'My Dog App',
+     home: Scaffold(
+       appBar: AppBar(
+         title: Text('Yellow Lab'),
+       ),
+       body: Center(
+         child: DecoratedBox(
+           decoration: BoxDecoration(color: Colors.lightBlueAccent),
+           child: Padding(
+             padding: const EdgeInsets.all(8.0)
+             child: Text('Rocky'),
+           ),
+         ),
+       ),
+     ),
+   );
+ }
+
+step 2:
+
+body: Center(
+         child: Column(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: [
+             DecoratedBox(
+               decoration: BoxDecoration(color: Colors.lightBlueAccent),
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Text('Rocky'),
+               ),
+             ),
+             DecoratedBox(
+               decoration: BoxDecoration(color: Colors.lightBlueAccent),
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Text('Spot'),
+               ),
+             ),
+             DecoratedBox(
+               decoration: BoxDecoration(color: Colors.lightBlueAccent),
+               child: Padding(
+                 padding: const EdgeInsets.all(8.0),
+                 child: Text('Fido'),
+               ),
+             ),
+           ],
+         ),
+       ),
+
+step 3:
+
+use a widget called SizedBox to add blank space between them
+
+many codes are repeated, remove those boiler plate codes.
 
 
+Images and assets:
+=====================
+child: Image(
+          image: NetworkImage(
+              "https://images.unsplash.com/photo-1620415608024-32341999af49?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"),
+        ))
+
+ensure correct image address is given;
+
+IF i want to use image from application
+
+create a folder images or assets in app
+
+copy paste the images into it
+
+register them min pubspec.yaml
+
+# assets:
+  #   - images/b_dot.jpeg
+  #   - images/a_dot_ham.jpeg
+
+once abv step is done, chnage the name of image in AssetImage("images/a_dot_ham.jpeg");
+
+if at all we r gonna have many images shud v declare image in pubspec.yaml...
+not needed instead, we can add as below
+
+	#assests:
+	assets/
+
+in code:
+
+   image: AssetImage("assets/phot.jfif"),
+or else
+	image.network() or
+	image.assets(); 
+
+[donot put numbers for image name ]
+
+Buttons and icons:
+====================
+
+Icon:
+
+ body: Center(
+          child: const Icon(
+            Icons.airport_shuttle_sharp,
+            color: Colors.blueGrey,
+            size: 50,
+          ),
+
+Button:
+RaisedButton and FlatButton are depricated
+
+ElevetedButton
+TextButton(
+            child: Text("click me"),
+            onPressed: () {
+              print('clicked me');
+            },
+            onLongPress: () {
+              print('pressed for much time');
+            },
+          ),
 
 
+Button with Icon:
+ElevatedButton(
+            child: Text('Button'),
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+                primary: Colors.purple,
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                textStyle: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.bold)),
+),
+
+ ElevatedButton.icon(
+          onPressed: () {
+            print('welcome');
+          },
+          // onFocusChange: (hasFocus) {
+          //   print(hasFocus ? 'hi' : 'else');
+          // },
+          icon: const Icon(Icons.mail),
+          label: const Text("mail me"),
+          style: ElevatedButton.styleFrom(primary: Colors.amber),
+        ))
+
+You can style ElevatedButton by using the styleFrom static method or the ButtonStyle class. The first one is more convenience than the second one.
+
+Task:
+=====
+Find out what is ICon Button;
+
+
+Layouts:
+=========
+	Scaffold
+	Center
+	ThemeData
+	Containers
+	Rows and columns
+	Stack
+	ListView
+	GridView
+	Navigation
+
+Scaffold:
+==========
+
+  return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("myapp"),
+        ),
+        body: const Center(
+          child: Text("hiiii"),
+        ),
+        floatingActionButton: FloatingActionButton(
+            child: const Icon(Icons.lightbulb_outline),
+            onPressed: () {
+              print('hi');
+            }),
+        persistentFooterButtons: [
+          IconButton(onPressed: () {}, icon: Icon(Icons.ac_unit)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.access_time_filled)),
+          IconButton(onPressed: () {}, icon: Icon(Icons.access_alarms))
+        ],
+      ),
+    );
+
+Changing theme:
+=================
+
+use material palette [https://www.materialpalette.com/]
+
+. Color primaryColor:
+This is the background color of major parts of the app like toolbars, tab bars, appbar, and many more.
+
+Color accentColor:
+The accent color is also known as a secondary color. This is foreground color for widgets like knobs, text, overscroll edge effect, etc.
+
+ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    visualDensity: VisualDensity(vertical: 0.5, horizontal: 0.5),
+    primarySwatch: MaterialColor(
+      0xFFF5E0C3,
+      <int, Color>{
+        50: Color(0x1a5D4524),
+        100: Color(0xa15D4524),
+        200: Color(0xaa5D4524),
+        300: Color(0xaf5D4524),
+        400: Color(0x1a483112),
+        500: Color(0xa1483112),
+        600: Color(0xaa483112),
+        700: Color(0xff483112),
+        800: Color(0xaf2F1E06),
+        900: Color(0xff2F1E06)
+      },
+    ),
+    primaryColor: Color(0xff5D4524),
+    primaryColorBrightness: Brightness.dark,
+    primaryColorLight: Color(0x1a311F06),
+    primaryColorDark: Color(0xff936F3E),
+    canvasColor: Color(0xffE09E45),
+    accentColor: Color(0xff457BE0),
+    accentColorBrightness: Brightness.dark,
+    scaffoldBackgroundColor: Color(0xffB5BFD3),
+    bottomAppBarColor: Color(0xff6D42CE),
+    cardColor: Color(0xaa311F06),
+    dividerColor: Color(0x1f6D42CE),
+    focusColor: Color(0x1a311F06));
+
+Task:
+
+Toggle between themes 
