@@ -1,0 +1,358 @@
+Container widget:
+
+container takes the whole size of parent
+used to do padding margin etc
+
+create a app:
+create main method:
+call runAppp() inside main
+create Material constructor and 
+add property home: and 
+call Home() inside it
+
+create a directory pages
+create a dart file named home.dart
+type stless and give name of class as home
+import material.dart lib in the top
+now goto main.dart and import this file there as below
+
+import 'package:appname/dir_name/fliename.dart';
+
+create a container in the home and return
+given padding and margin for text widget inside it
+
+
+font and text style - see prev notepad
+
+ROW and COLUMN:
+
+place multiple elements
+
+Image widget:
+Image.asset('path',
+height,width, frameBuilder:
+(
+	widget,int frame,wasSynchronouslLoaded
+))
+
+int frame can be given as "_" as it is not diff
+ Container(
+        color: Colors.white,
+        padding: EdgeInsets.all(16.0),
+        child: Image.network(
+          'https://toppng.com/uploads/preview/batman-png-11553978541s9xp0sddf1.png',
+          frameBuilder: (BuildContext context, Widget child, int? frame,
+              bool wasSynchronouslyLoaded) =>
+          wasSynchronouslyLoaded
+              ? child
+              : AnimatedOpacity(
+            child: child,
+            opacity: frame == null ? 0 : 1,
+            duration: const Duration(seconds: 5),
+            curve: Curves.easeOut,
+          ),
+          loadingBuilder: (context, child, progress) => progress == null
+              ? child
+              : LinearProgressIndicator(
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+          ),
+          errorBuilder:
+              (BuildContext context, Object exception, StackTrace? stackTrace) =>
+              Text('Failed to load image'),
+
+        ),
+      )
+
+framebuilder, errorbuilder,loadingbuilder:
+body: Container(
+
+       height: double.infinity,
+       width:double.infinity,
+       child: Image.network("https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png",
+       frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+         return Padding(
+           padding: EdgeInsets.all(80.0),
+           child: child,
+         );
+       },
+       loadingBuilder: (context, child, loadingProgress,) {
+         return Center(
+           child: loadingProgress==null?child:Text("loading image"),
+         );
+       },
+         errorBuilder: (context, error, stackTrace) {
+           return Center(
+             child: Text("error occured"),
+           );
+         },
+       )
+      ),
+
+
+
+TASK: 
+====
+1. decoration in container apart from decoration box explicitly given.
+its not a child to container to pad or etc
+
+eg:
+decoration: BoxDecoration(image:DecorationImage(
+           image: NetworkImage(("https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_960_720.png")
+           ),
+               fit: BoxFit.fitWidth,
+       )
+give boxFit in above decorationImage property
+2. 
+refer "23_2_2022 task1" in flutter_task folder 
+===============================================================
+ListView:
+==========
+	basic:
+		 body: Container(
+          height: 150,
+          width: double.infinity,
+          padding: EdgeInsets.all(40.0),
+          child: ListView(
+             children: <Widget>[
+              Text("text"),
+               Text("text"),
+               Text("text"),
+               Text("text"),
+               Text("text"),
+               Text("text"),
+               Text("text"),
+            ],
+          ),);
+
+helps to scroll thru the data.
+
+remove the padding in above code;
+add this for scrolling:
+     scrollDirection: Axis.horizontal,
+
+Task 3: shrinkWrap: true, 
+=====================================================================================
+
+ListBuilder: 	for scrollable screen 
+============
+ body: Container(
+          height: 250,
+          width: double.infinity,
+         // padding: EdgeInsets.all(40.0),
+          child:
+        ListView.builder(itemBuilder: (context, index) {
+          return ListTile(
+            title: Text("Text $index"),
+       // subtitle: Text("...."),
+        leading: Icon(Icons.done),
+        trailing: Icon(Icons.close),
+        );
+        },)
+);
+
+task 4: hoverColor: Colors.green,
+
+TASK 5: refer "23_2_2022 task2" in flutter_task folder 
+=====================================================================================
+refer belwo for singlechildscrollview
+https://medium.com/flutterworld/flutter-problem-listview-vs-column-singlechildscrollview-43fdde0fa355
+https://api.flutter.dev/flutter/widgets/SingleChildScrollView-class.html
+
+
+dismissable widget: refer doc
+========================================================
+TextField: input from user
+
+class _NetworkImageWidgetState extends State<NetworkImageWidget> {
+  var ctlr;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    ctlr=TextEditingController();
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    ctlr.dispose();
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+    body: Container(
+       child: Column(
+           children: [
+             SizedBox(height:80.0),
+             TextField(autofocus: true,controller: ctlr,),
+             TextField(),
+             TextField(),
+             TextField(),
+             TextField(),
+             TextField(),
+
+           ],
+         ),
+
+    ),
+      floatingActionButton: IconButton(
+    icon: Icon(Icons.add),
+    onPressed: (){
+        print(ctlr.text);
+    },
+    ),
+    );
+  }
+}
+
+preset value in textfield:
+============================
+
+initialize value in textfield 
+
+ctlr.text="ajay";
+
+cut copy paste options : interactive:
+simplest:
+===========
+String value = "";
+TextField(
+  onChanged: (text) {
+    value = text;
+  },
+)
+
+
+
+TextEditingController controller = TextEditingController();
+TextField(
+  controller: controller,
+)
+
+
+Other callbacks from the TextField
+The TextField widget also provides other callbacks such as
+onEditingCompleted
+onSubmitted
+onEditingComplete: () {},
+onSubmitted: (value) {},
+These are callbacks called on actions like when the user clicks the “Done” button on iOS.
+
+
+1. Keyboard Type
+A TextField allows you to customise the type of keyboard that shows up when the TextField is brought into focus. We change the keyboardType property for this.
+TextField(
+  keyboardType: TextInputType.number,
+),
+The types are:
+TextInputType.text (Normal complete keyboard)
+TextInputType.number (A numerical keyboard)
+TextInputType.emailAddress (Normal keyboard with an “@”)
+TextInputType.datetime (Numerical keyboard with a “/” and “:”)
+TextInputType.numberWithOptions (Numerical keyboard with options to enabled signed and decimal mode)
+TextInputType.multiline (Optimises for multi-line information)
+2. TextInputAction
+Changing textInputAction of the TextField lets you change the action button of the keyboard itself.
+As an example:
+TextField(
+  textInputAction: TextInputAction.continueAction,
+),
+This causes the “Done” button to be replaced by a “Continue” button:
+
+TextField(
+  textInputAction: TextInputAction.send,
+),
+
+3. Autocorrect
+Enables or disables autocorrect for the specific TextField. Use the autocorrect field to set this.
+TextField(
+  autocorrect: false,)
+
+capitalization:
+===============
+TextField(
+  textCapitalization: TextCapitalization.sentences,
+),
+Controlling the Size and Maximum Length in a TextField
+=======================================================
+TextField(
+  maxLength: 4,
+),
+TextField(autofocus: true,controller: ctlr,enabled: false,enableInteractiveSelection: false,),
+obecure text?
+Center(child: Column(children: <Widget>[
+            Container(
+                margin: EdgeInsets.all(20),
+                child: TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Full Name',
+                  ),
+                  onChanged: (text) {
+                    setState(() {
+                      fullName = text;
+                      //you can access nameController in its scope to get
+                      // the value of text entered as shown below
+                      //fullName = nameController.text;
+                    });
+                  },
+                )),
+            Container(
+              margin: EdgeInsets.all(20),
+              child: Text(fullName),
+            )
+          ]))),
+
+Container(
+       child: Column(
+           children: [
+             SizedBox(height:80.0),
+             TextField(autofocus: true,controller: ctlr,enabled: true,
+               enableInteractiveSelection: true,keyboardType: TextInputType.number,
+             autocorrect: true,obscureText: true,),
+              SizedBox(height:40.0),
+              TextField(
+                 obscureText: true,
+                 decoration: InputDecoration(
+                   contentPadding: EdgeInsets.all(40.0),
+                   border: OutlineInputBorder(),
+                   labelText: 'Password',
+                 )),
+             TextField(),
+             TextField(),
+             TextField(),
+             TextField(),
+
+           ],
+         ),
+
+    ),
+      floatingActionButton: IconButton(
+    icon: Icon(Icons.add),
+    onPressed: (){
+        print(ctlr.text);
+    },
+
+
+TextField(
+  maxLines: 3,
+)
+
+TextField(
+  decoration: InputDecoration(
+    prefixIcon: Icon(Icons.print)
+  ),
+),
+
+TextField(
+  decoration: InputDecoration(
+    prefix: CircularProgressIndicator(),
+  ),
+),
+
+
+flight booking app:
+=====================
+steps:
+
