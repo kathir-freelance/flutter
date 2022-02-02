@@ -1,0 +1,79 @@
+28-01-2022
+================
+World time api - http example - service example:
+===================================================
+C:\Users\kathi\StudioProjects\world_timer_app
+
+SI calc app steps: 
+===================
+refer image in "C:\Users\kathi\Desktop\flutter\flutter_task\27_1_2022 demo"
+
+
+complete the logic of this app. implement forms and validation
+
+Flutter - SQLLite Database connection:
+========================================
+C:\Users\kathi\Desktop\flutter\flutter_task\28_1_2022_noteapp ---> image
+
+
+1. create app as usual
+2. create a class and pass to runApp as constructor arg
+3. create material app and scaffold in myapp
+4. Add themeData to it
+      theme: ThemeData(
+        primarySwatch: Colors.deepPurple
+      ),
+======================================================================
+task 1: Highlighting the selected item
+task 2: on scrolling listView,Bottom Navigation bar should be hided 
+
+Task 3: ExpandableFAB?
+
+Task 4:
+
+FloatingActionButton(
+	splashColor: Colors.purple,
+foreground color:
+foregroundColor: Colors.pink,
+hoverColor: Colors.orange,
+elevation: 12,
+onPressed: null,
+disabledElevation: 0,
+hoverElevation: 50,
+mini: true,
+mouseCursor: MaterialStateMouseCursor.textable,
+tooltip: 'Save',
+shape: RoundedRectangleBorder(),
+),
+
+task 5: Try to make your own back button :
+==================================
+ appBar: AppBar(
+                    leading: IconButton(
+                    icon: Icon(Icons.arrow_back_ios),
+                    iconSize: 20.0,
+                    onPressed: () {
+                      _goBack(context);
+                    },
+                  ),
+                  centerTitle: true,
+                  title: Text('back')),
+And the _goBack method :
+
+ _goBack(BuildContext context) {
+Navigator.pop(context);
+}
+
+task 6: flutter remove back button:
+==============================
+appBar: AppBar(
+	title: Text('AppBar'),
+    automaticallyImplyLeading: false, // remove back button in appbar.
+   )
+task 7: SI calc app steps: 
+===================
+refer image in "C:\Users\kathi\Desktop\flutter\flutter_task\27_1_2022 demo"
+
+complete the logic of this app . implement forms and validation
+
+=====================================================================================

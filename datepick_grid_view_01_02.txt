@@ -1,0 +1,175 @@
+2-02-2022
+==========
+Time&Date picker:
+=================
+create this inside State class(stateful widget)
+
+TimeOfDay selectedTime = TimeOfDay.now();
+
+ body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            ElevatedButton(
+                onPressed: () {
+                  _selectTime(context);
+                },
+              child: Text("Choose Time"),
+            ),
+            Text("${selectedTime.hour}:${selectedTime.minute}"),
+          ],
+        ),
+      ),
+
+As the UI is ready now let’s create the method to display TimePicker. We will be 
+using the TimeOfDay variable ‘selectedTime‘ created above for initialDate. 
+We are assigning the user selected time to the variable in setState() to 
+update the UI.
+
+selectTime(BuildContext context) async {          
+      final TimeOfDay timeOfDay = await showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        initialEntryMode: TimePickerEntryMode.dial,
+      );
+      if(timeOfDay != null && timeOfDay != selectedTime)
+        {
+          setState(() {
+            selectedTime = timeOfDay;
+          });
+        }
+  }
+
+
+task 1:
+===========
+showTimePicker(
+        context: context,
+        initialTime: selectedTime,
+        initialEntryMode: TimePickerEntryMode.input,
+        confirmText: "CONFIRM",
+        cancelText: "NOT NOW",
+          helpText: "BOOKING TIME",
+      );
+
+try abv snippet.
+
+similiarly is date picker:
+
+==========================================
+gesture:
+=========
+https://api.flutter.dev/flutter/widgets/GestureDetector-class.html
+Inkwell:
+=========
+
+InkWell is an area of Material widget that responds when being touched by showing
+splash. The shape is always rectangle and it clips the splash.
+
+InkWell(
+    splashColor: Colors.yellow,
+    highlightColor: Colors.blue,
+
+    child: Icon(Icons.add_circle, size: 50),
+    onTap: () {
+      setState(() {
+        _count += 1;
+      });
+    },
+  ),
+
+InkWell is an area of Material widget that responds when being touched by 
+showing splash. The shape is always rectangle and it clips the splash.
+
+However, in the above output, the splash color is not shown clearly because it's covered by the highlight color. 
+To make it more visible, we can set opacity to the highlight color.
+
+//highlightColor: Colors.blue.withOpacity(0.5),
+
+InkResponse:
+============
+nkResponse is an area of Material widget that responds when being touched by showing
+splash. Unlike InkWell, the shape of InkResponse can be configured. You can also 
+configure whether it should clip the splash.
+
+InkResponse(
+    splashColor: Colors.yellow,
+    highlightColor: Colors.blue.withOpacity(0.5),
+    child: Icon(Icons.add_circle, size: 50),
+    onTap: () {
+      setState(() {
+        _count += 1;
+      });
+    },
+  )
+
+2.
+InkResponse(
+    highlightShape: BoxShape.rectangle,
+    splashColor: Colors.yellow,
+    highlightColor: Colors.blue.withOpacity(0.5),
+    child: Icon(Icons.add_circle, size: 50),
+    onTap: () {
+      setState(() {
+        _count += 1;
+      });
+    },
+  )
+
+checkbox:
+===========
+ body: Center(
+        child: Column(
+          children: [
+            Row(
+              children: [
+                Checkbox(
+                  value: _checkbox,
+                  onChanged: (value) {
+                    setState(() {
+                      _checkbox = !_checkbox;
+                    });
+                  },
+                ),
+                Text('I am true now'),
+              ],
+            ),
+            CheckboxListTile(
+              controlAffinity: ListTileControlAffinity.leading,
+              title: Text('I am true now'),
+              value: _checkboxListTile,
+              onChanged: (value) {
+                setState(() {
+                  _checkboxListTile = !_checkboxListTile;
+                });
+              },
+            )
+          ],
+        ),
+      ),
+
+Modal bottom sheet:
+
+	refer bottom_sheet demo in flutter folder
+
+search box
+search and filter list view:
+
+expansion tile
+
+Date Range picker
+
+how to add favicon in app
+
+autocomplete text field
+
+how to enable and disable button
+
+how to zoom image on double tap
+
+stepper widget
+
+how to create a Tabbed app bar
+
+grid_view:
+===========

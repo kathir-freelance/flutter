@@ -1,0 +1,52 @@
+int  n=90;
+
+return n>180? A:B;
+
+step 1:
+
+void getData(){
+//later we can add api 
+//to delay and get reply in few seconds we use Future.delayed
+
+	Future.delayed(Duration(seconds:3),(){
+		print('hello!!!');
+	});//non-blocking code
+	Future.delayed(Duration(seconds:2),(){
+		print('hi how are you');
+	});
+	print('outside!!!');
+}
+	//call abv function in initState
+	initState(){
+		getData();
+	}
+}
+
+o/p :
+outside!!!	
+hi how are you
+hello!!!
+
+above scenario is sync
+
+to make it async,ie add async to getData
+
+void getData() async{}
+
+use await if u want tht first delayed to print first and then only second 
+delayed code shud work. use as below
+
+	String s1=await Future.delayed(Duration(seconds:3),(){
+		print('hello!!!');
+	});
+
+then print outside should be printed out? use await for tht too
+String s2=await Future.delayed(Duration(seconds:3),(){
+		print('hi how are you');
+	});
+
+if u keep print in initSTate:
+
+that will be called first then prints getData
+
+print data in s1 and s2 in getData
