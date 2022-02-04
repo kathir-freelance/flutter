@@ -1,0 +1,200 @@
+auto hide FAB
+indexed stack
+pull down to refresh
+
+expansion tile
+
+Date Range picker
+
+how to add favicon in app
+
+autocomplete text field
+
+how to enable and disable button
+
+how to zoom image on double tap
+
+stepper widget
+
+how to create a Tabbed app bar
+
+State Management:
+
+GRID VIEW:
+==========
+
+
+
+grid_view:
+===========
+
+intrinsic height and width
+
+add intrinsic height to row having 2 elements and cross axis alignment to stretch
+same to width
+
+pageview + bottom navigation bar:
+===================================
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Bottom Navigation Bar',
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key}) : super(key: key);
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  int _seletedItem = 0;
+  var _pages = [FirstPage(), SecondPage(), ThirdPage()];
+//add this for page view
+//var _pageController = PageController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Bottom Navigation Bar - Demo'),),
+      body: 
+/*add this for page view
+PageView(
+        children: _pages,
+        onPageChanged: (index) {
+          setState(() {
+            _seletedItem = index;
+          });
+        },
+        controller: _pageController,
+      ),
+*/
+
+	Center(child: _pages[_seletedItem],),
+      bottomNavigationBar: BottomNavigationBar(
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: Icon(Icons.home), title: Text('Home')),
+          BottomNavigationBarItem(icon: Icon(Icons.photo), title: Text('Photos')),
+          BottomNavigationBarItem(icon: Icon(Icons.account_circle), title: Text('Profile'))
+        ],
+        currentIndex: _seletedItem,
+        onTap: (index){
+          setState(() {
+            _seletedItem = index;
+//add this for page view thru bottom
+//_pageController.animateToPage(_seletedItem,duration: Duration(milliseconds: 200), curve: Curves.linear);
+          });
+        },
+      ),
+    );
+  }
+}
+
+class FirstPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('First Page', style: TextStyle(fontSize: 50.0),),),);
+  }
+}
+
+class SecondPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('Second Page',style: TextStyle(fontSize: 50.0),),),);
+  }
+}
+
+class ThirdPage extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('Third Page',style: TextStyle(fontSize: 50.0),),),);
+  }
+
+
+cross fade widget:
+=====================
+var flag =false;
+body: Center(
+        child: Column(
+          children: <Widget>[
+            AnimatedCrossFade(
+                firstChild: Login(),
+                secondChild: SignUp(),
+                crossFadeState:
+                    flag ? CrossFadeState.showFirst : CrossFadeState.showSecond,
+                duration: Duration(milliseconds: 500)),
+            RaisedButton(
+              child: Text('Done'),
+              onPressed: () {},
+            ),
+            FlatButton(
+              child: Text(flag ? 'Go to Sign Up' : 'Go to Login'),
+              onPressed: () {
+                setState(() {
+                  flag = !flag;
+                });
+              },
+            )
+          ],
+        ),
+      ),
+
+create login and sign up wiget
+
+login:
+return Container(
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Padding(
+            child: Text(
+              'Login',
+              style: TextStyle(fontSize: 30),
+            ),
+            padding: EdgeInsets.only(bottom: 100.0),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'User name'),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'Password'),
+          ),
+        ],
+      ),
+    );
+
+sign up:
+==========
+return Container(
+      padding: EdgeInsets.all(20.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          Padding(
+            child: Text(
+              'Sign Up',
+              style: TextStyle(fontSize: 30),
+            ), padding: EdgeInsets.only(bottom: 100.0),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'User name'),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'Email'),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'Password'),
+          ),
+          TextField(
+            decoration: InputDecoration(labelText: 'Confirm Password'),
+          ),
+        ],
+      ),
+    );

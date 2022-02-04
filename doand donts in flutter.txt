@@ -1,0 +1,270 @@
+Use Const in Widgets
+You can cache parts of your widget tree to prevent unnecessary rebuilds.
+The easiest way is to use dart const constructors for parts of the child tree whichwill not change. The widget which will not change when setState is called, we should define it as constant, to prevent the widget to rebuild so it improves the Overall performance.
+Follow Linting rules
+DO avoid relative imports for files in lib/. Use package imports.
+Refer https://dart-lang.github.io/linter/lints/always_use_package_imports.html
+And https://dart-lang.github.io/linter/lints/ for linting rules
+Check for boundary cases and handle layout overflows properly
+The widgets should take care of responsiveness of the application.
+Use of widgets which will handle screen overflows like Expanded to avoid overflow errors.
+Build method structure
+The build method should be pure, without any side effects. This is because, it may be triggered by many external factors, such as:
+
+Route pop/push
+Screen resize, usually due to keyboard appearance or orientation change
+Parent widget recreated its child
+An InheritedWidget the widget depends on (Class.of(context) pattern) change
+The build method should not have any logic to trigger an http call or modify any state.
+
+Proper state management and separation of logic from UI
+Use provider as the recommended package for state management.
+You can also choose to use any other approach for state management like Bloc.
+Business logic should be separated from the UI
+Using Provider package the right way
+Provide only at the needed level, instead of providing everything at the top level
+When using Provider.of() to consume data, listen to changes only if you need to, otherwise use listen:false
+if you want to consume the data only once. For e.g. making a method call.
+When using Consumer widget, consume at the specific level in order to avoid rebuilding of the entire tree.
+When using Consumer widget, use the child option to mark part of the independent widget tree which need not rebuild.
+When using ChangeNotifierProvider, use the correct option of create or value based on if it’s an existing value or creating the provider value for the first time.
+Using Third party packages
+Validate any third party package being used in the application as sometimes it might break the build or not be in sync with the current flutter version. This is especially required when you are upgrading flutter, so make sure to check all your plugins and third party packages after upgrade.
+===============================================================================
+
+Why do we need coding standards?
+A coding standard ensures that all developers writing the code in a particular 
+language write according to the guidelines specified. 
+This makes the code easy to understand and provides consistency in the code.
+
+Best practices in designing and developing Flutter app.
+
+Use only relative imports for files in lib/
+
+While developing  application we create multiple files with in our 
+lib folder and import it in one another. Use of absolute and 
+relative together can create confusion, To avoid this we should use relative 
+imports for files.
+
+// Don't
+import 'package:appname/utilities/app_config.dart';
+
+// Do
+import '../utilities/app_config.dart';
+
+=========================
+Specify types for class members/variables
+
+Always specify the type of member when it's value type is know. avoid using var when possible. as var is dynamic type take more space and time to resolve.
+
+//Don't
+var time =18;
+final car=Car();
+const timeOut=2000.4;
+
+//Don
+int time =18;
+final Car car=Car();
+const double timeOut=2000.4;
+=================================================
+Naming convention
+
+Naming conventions make sure programmer know how to name variable and classes so  that they will be consistent and contain all the right information.
+
+Classes, enums, typedefs, and extensions name should in UpperCamelCase.
+
+class MyApp { ... }
+enum StoreNames { .. }
+typedef Predicate<T> = bool Function(T value);
+extension BucketList<T> on List<T> { ... }
+
+Packages ,Libraries, Directories, and source files name should be in 
+snake_case(lowercase_with_underscores).
+
+library logicwind_repo;
+import 'logicwind/mobile_screen.dart';
+
+Variables, constants, parameters, and named parameters should be in lowerCamelCase.
+
+var item;
+const stockPrice = 40.4;
+final urlScheme = RegExp('^([a-z]+):');
+void sumOfTwoNumbers(int firstNumber,int secondNumber) {
+  // ...
+}
+
+Use of Null safe (??) and Null aware (?.) operators
+
+Prefer using ?? (if null) and ?. (null aware) operators instead of null 
+checks in conditional expressions. It reduces code and make code more cleaner.
+
+//Don't
+var side = rightSide == null ? leftSide : rightSide;
+
+//Do
+var side = rightSide ?? leftSide;
+
+
+//Don't
+var userName = user == null ? null : user.name;
+
+//Do
+var userName = user?.name;
+============================
+Use spread collections
+
+We often append one collection with other , spread collection syntax leads to simpler
+ code.
+
+//Don't
+var list = [4,5,6];
+var newList = [1,2];
+newList.addAll(list);
+
+
+//Do
+var list = [4,5,6];
+var newList = [1,2,...y];
+
+=============================
+Avoid using as instead, use is operator
+
+Use of as operator can throw an exception if the cast is not possible. To avoid this exception, we can use is.
+
+//Don't
+(item as Profile).name = 'sachin';
+
+
+//Do
+if (item is Profile)
+  item.name = 'sachin';
+=============================
+Don’t explicitly initialize variables null
+
+Adding redundant and unneeded code is bad practices for any language out there, In Dart, the variable is automatically initialized to null when its value is not specified, so is adding null is redundant and unneeded.
+
+//Don't
+int _item = null;
+
+//Do
+int _item;
+=============================
+Avoid print() calls
+
+You use debugPrint when you want more information about what is being printed to the console. The additional information is usually useful for debugging. Also  Android sometimes discards some log lines. To avoid this, use debugPrint().
+
+//Don'ts
+print(x);
+
+//Do
+import 'package:flutter/foundation.dart';
+debugPrint("$x");
+=============================
+Use ListView.builder for a long list
+
+Unless an app is very basic and created for learning purposes, it will always use dynamic data i.e. Contents of the screen will change based on user actions and/or with change in network data.
+
+Most of the time, the dynamic behaviour is achieved by changing the contents that is being displayed in the body. Flutter provides ListView.builder which can be used to generate dynamic contents from external sources.
+
+Default ListView constructor builds the whole list at once. ListView.builder creates a lazy list and when the user is scrolling down the list, Flutter builds widgets on-demand.
+
+//Don't
+ListView(
+  children[
+    widget1(),
+    widget2(),
+    widget3(),
+  ]
+)
+
+//Do
+ListView.builder(
+   itemCount: litems.length,
+   itemBuilder: (BuildContext ctxt, int index) {
+    return new Text(litems[index]);
+   }
+)
+
+Use of state management appropriately
+
+Choosing suitable state management for particular functionality is very important using setState for every state change is not good practices
+
+Flutter offers following state managements
+
+Provider
+setState
+InheritedWidget & InheritedModel
+Redux
+Fish-Redux
+BLoC / Rx
+MobX
+GetX
+You can learn more at https://flutter.dev/docs/development/data-and-backend/state-mgmt
+
+Split Widget into different Widgets
+
+When setState() is called on state, all descendent widget will rebuild Therefore split widgets into small widgets so the setState() call can affect only subtrees whose UI actually needs to be change
+
+//Don't
+Column(
+  children: [
+    Container(
+    child: RaisedButton(onPressed: () {
+        setState() {}
+    })),
+    Container(
+    child: RaisedButton(onPressed: () {
+        setState() {}
+    })),
+    Container(
+    child: RaisedButton(onPressed: () {
+        setState() {}
+    }))
+])
+
+//Do
+Column(
+  children[
+    widget1(),
+    widget2(),
+    widget3(),
+  ]
+)
+
+=-==========================
+use cascade operator:
+=-==========================
+var path = Path();
+path.lineTo(0, size.height);
+path.lineTo(size.width, size.height);
+path.lineTo(size.width, 0);
+path.close();  
+
+
+// Do
+var path = Path()
+..lineTo(0, size.height)
+..lineTo(size.width, size.height)
+..lineTo(size.width, 0)
+..close(); 
+==============
+Use raw string
+A raw string can be used to avoid escaping only backslashes and dollars.
+//Don't
+var s = 'This is demo string \\ and \$';
+
+
+//Do
+var s = r'This is demo string \ and $';
+
+Use expression function bodies
+For functions that contain just one expression, you can use an expression function. The => (arrow) notation is used for expression function.
+Use async/await overusing futures callback
+Asynchronous code is hard to read and debug. The async/await syntax improves readability.
+
+Split widgets into sub Widgets.
+When setState() is called on a State, all descendent widgets will rebuild. Therefore, Split the widget into small widgets so the setState() call to the part of the subtree whose UI actually needs to change.
+
+Use ListView.builder for a long list
+When working with infinite lists or very large lists, it’s usually advisable to use a ListView builder in order to improve performance.
+Default ListView constructor builds the whole list at once. ListView.builder creates a lazy list and when the user is scrolling down the list, Flutter builds widgets on-demand.

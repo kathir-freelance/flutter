@@ -155,21 +155,39 @@ Modal bottom sheet:
 search box
 search and filter list view:
 
-expansion tile
 
-Date Range picker
+search box : filter:
+========================
+Column(
+children[
+TextField(),
+ ListView.builder(
+             shrinkWrap: true,
 
-how to add favicon in app
+              itemCount: allBirds.length,
+                itemBuilder: (context,index){
 
-autocomplete text field
+              final d=allBirds[index];
+              return ListTile(title: Text("${d.title}"),subtitle: Text("${d.cost}"),);
+            })
+                )
 
-how to enable and disable button
+void _search(String qry) {
+    final suggestions=allBirds.where(
+            (bird){
+      String? title=bird.title!.toLowerCase();
+      String? inp=qry.toLowerCase();
+      return title.contains(inp);
+    }).toList();
+    setState(() {
+      allBirds=suggestions;
+    });
+  }
 
-how to zoom image on double tap
 
-stepper widget
+String a='h';
+a.contains('hello');//true
+a.equals('hello');//false
 
-how to create a Tabbed app bar
 
-grid_view:
-===========
+
